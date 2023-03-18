@@ -31,13 +31,27 @@ const btnHold = document.querySelector('.btn--hold');
 const current0Element = document.getElementById('current--0');
 const current1Element = document.getElementById('current--1');
 
-score0Element.textContent = 0;
-score1Element.textContent = 0;
-//    Player 1 | Player 2
-let scores = [0, 0];
-let currentScore = 0;
-let activePlayer = 0;
-let playing = true;
+let scores, currentScore, activePlayer, player;
+
+const initialize = function () {
+  //    Player 1 | Player 2
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  playing = true;
+
+  score0Element.textContent = 0;
+  score1Element.textContent = 0;
+  current0Element.textContent = 0;
+  current1Element.textContent = 0;
+
+  player0Element.classList.remove('player--winner');
+  player1Element.classList.remove('player--winner');
+
+  player0Element.classList.add('player--active');
+  player1Element.classList.remove('player--active');
+};
+
 //will hide dice
 //will create '.hidden' class in css
 diceElement.classList.add('hidden');
@@ -97,31 +111,4 @@ btnHold.addEventListener('click', function () {
   }
 });
 
-btnNewGame.addEventListener('click', function () {
-  //will be resetting the game.
-  //will reset  winners current score | other players should be 0
-  document
-    .querySelector(`.player--${activePlayer}`)
-    .classList.remove('player--winner');
-  resetCurrentScore();
-
-  //need to reset visual of total score
-
-  //will reset variable of total score
-  playing = true;
-  scores[0] = 0;
-  scores[1] = 0;
-
-  document.getElementById('score--0').textContent = 0;
-  document.getElementById('score--1').textContent = 0;
-
-  if (activePlayer === 1) {
-    activePlayer = 0;
-    player1Element.classList.remove('player--active');
-    player0Element.classList.add('player--active');
-  } else {
-    player0Element.classList.add('player--active');
-  }
-
-  //console.log(scores);
-});
+btnNewGame.addEventListener('click', initialize);
