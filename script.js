@@ -1,11 +1,5 @@
 'use strict';
 
-const scoreCheck = function (playerScore) {
-  if (playerScore >= 100) {
-    //game is over!
-  }
-};
-
 const resetCurrentScore = function () {
   currentScore = 0;
   document.getElementById(`current--${activePlayer}`).textContent = 0;
@@ -31,7 +25,7 @@ const btnHold = document.querySelector('.btn--hold');
 const current0Element = document.getElementById('current--0');
 const current1Element = document.getElementById('current--1');
 
-let scores, currentScore, activePlayer, player;
+let scores, currentScore, activePlayer, playing;
 
 const initialize = function () {
   //    Player 1 | Player 2
@@ -51,6 +45,8 @@ const initialize = function () {
   player0Element.classList.add('player--active');
   player1Element.classList.remove('player--active');
 };
+
+initialize();
 
 //will hide dice
 //will create '.hidden' class in css
